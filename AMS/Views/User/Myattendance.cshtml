@@ -1,0 +1,94 @@
+﻿
+@model IEnumerable<AMS.Models.Userlog>
+
+@{
+    ViewBag.Title = "Myattendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string startDate = TempData["Start"] as string;
+    string endDate = TempData["End"] as string;
+}
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                Filter Records
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+
+
+            <div class="col-md-3">
+                <label>From</label>
+                <input id="start" type="date" name="start" class="form-control datapiker" placeholder="Start" value="@startDate" />
+
+            </div>
+            <div class="col-md-3">
+                <label>To</label>
+
+                <input class="form-control datapiker" type="date" id="end" name="end" placeholder="End" value="@endDate" />
+            </div>
+
+            <div class="col-md-3" style="margin-top:25px;">
+
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Username
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.logintime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.logouttime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.checkeddate)
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.User.firstname  @item.User.secondname
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.logintime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.logouttime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkeddate)
+        </td>
+
+
+    </tr>
+    }
+
+</table>
+
+

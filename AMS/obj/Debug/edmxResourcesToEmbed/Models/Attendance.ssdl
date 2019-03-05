@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="attendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Userlog">
+    <Key>
+      <PropertyRef Name="logid" />
+    </Key>
+    <Property Name="logid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="logintime" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="logouttime" Type="datetime2" Precision="7" />
+    <Property Name="checkeddate" Type="date" />
+    <Property Name="userid" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="secondname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="usertype" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Userlog__userid__5535A963">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Userlog" Type="Self.Userlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Userlog">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="attendanceModelStoreContainer">
+    <EntitySet Name="Userlog" EntityType="Self.Userlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Userlog__userid__5535A963" Association="Self.FK__Userlog__userid__5535A963">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Userlog" EntitySet="Userlog" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

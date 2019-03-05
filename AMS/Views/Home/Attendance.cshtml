@@ -1,0 +1,97 @@
+﻿@model IEnumerable<AMS.Models.Userlog>
+
+@{
+    ViewBag.Title = "View Attendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string startDate = TempData["Start"] as string;
+    string endDate = TempData["End"] as string;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                Filter Records
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+
+
+            <div class="col-md-3">
+                <label>From</label>
+                <input id="start" type="date" name="start" class="form-control datapiker" placeholder="Start" value="@startDate" />
+
+            </div>
+            <div class="col-md-3">
+                <label>To</label>
+
+                <input class="form-control datapiker" type="date" id="end" name="end" placeholder="End" value="@endDate" />
+            </div>
+            @foreach (var m in Model)
+            {
+                Html.Hidden("id", m.userid);
+            }
+            <div class="col-md-3" style="margin-top:25px;">
+
+                <input type="submit" value="Search" class="btn btn-info" />
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+<div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.logintime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.logouttime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.checkeddate)
+            </th>
+
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.User.firstname  @item.User.secondname
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.logintime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.logouttime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.checkeddate)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.userid }) |*@
+                    @Html.ActionLink("View Detail", "Attendance", new { id = item.userid }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.userid })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

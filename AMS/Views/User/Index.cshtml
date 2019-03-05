@@ -1,0 +1,94 @@
+﻿@model AMS.Models.ViewModel.AttendanceViewModel
+@{
+    ViewBag.Title = "Employee Attendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>My Attendance </h1>
+        </div>
+        @using (Html.BeginForm("ButtonAction", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-12" style="margin-top:10%">
+
+                <div class="col-md-6 text-center" style="background-color:white; height:200px; border-radius:4px;">
+
+                    <h3 class="text-blue">Check In</h3>
+                    <div style="display:inline-flex">
+                        <p>Click on the Checkin buttone to register your attendance</p>
+
+                    </div>
+                    @{
+                        if (Model.HasCheckedIn == true)
+                        {
+                            <div class="callout callout-info" style="margin-bottom: 0!important;">
+                                <h4><i class="fas fa-info-circle fa-lg"></i> Note:</h4>
+                                <p> The user has checked in today</p>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="CheckIn" name="action"><i class="fas fa-sign-in-alt"></i> Check In</button>
+
+                            </div>
+
+
+                        }
+
+                    }
+                </div>
+
+                <div class="col-md-6 text-center" style="background-color:white; height:200px; border-radius:4px;">
+
+                    <h3 class="text-red">Check Out</h3>
+                    <div style="display:inline-flex">
+                        <p>Click on the Check Out button to checkout</p>
+
+                    </div>
+                    @{
+                        if (Model.HasCheckedOut == true)
+                        {
+                            <div class="callout callout-danger" style="margin-bottom: 0!important;">
+                                <h4><i class="fas fa-info-circle fa-lg"></i> Note:</h4>
+                                <p> The user has checked out today</p>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-danger btn-lg btn-block" value="CheckOut" name="action">Check Out</button>
+
+                            </div>
+
+
+                        }
+
+                    }
+
+
+
+
+                </div>
+
+            </div>
+
+        }
+
+        <div class="col-md-12 text-center">
+
+            <p>Click on the blue button to check in and on the red button to check out</p>
+
+        </div>
+    </div>
+
+
+
+
+</div>

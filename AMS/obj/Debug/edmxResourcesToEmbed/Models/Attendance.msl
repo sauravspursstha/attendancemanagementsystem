@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="attendanceModelStoreContainer" CdmEntityContainer="dbconn">
+    <EntitySetMapping Name="Userlogs">
+      <EntityTypeMapping TypeName="attendanceModel.Userlog">
+        <MappingFragment StoreEntitySet="Userlog">
+          <ScalarProperty Name="logid" ColumnName="logid" />
+          <ScalarProperty Name="logintime" ColumnName="logintime" />
+          <ScalarProperty Name="logouttime" ColumnName="logouttime" />
+          <ScalarProperty Name="checkeddate" ColumnName="checkeddate" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="attendanceModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="secondname" ColumnName="secondname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="usertype" ColumnName="usertype" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

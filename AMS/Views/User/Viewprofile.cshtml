@@ -1,0 +1,49 @@
+﻿@model AMS.Models.User
+@{
+    ViewBag.Title = "Viewprofile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-offset-4  col-md-4">
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+           
+            <h3 class="profile-username text-center">@Model.firstname  @Model.secondname</h3>
+
+            <p class="text-muted text-center">Software Engineer</p>
+
+
+        <div class="box-header with-border">
+            <h3 class="box-title">Profile Detail</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <strong><i class="fa fa-book margin-r-5"></i> Name</strong>
+
+            <p class="text-muted">
+                @Model.firstname  @Model.secondname
+            </p>
+
+            <hr>
+
+            <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+
+            <p class="text-muted">@Model.address</p>
+
+            <hr>
+
+            <strong><i class="fas fa-phone margin-r-5"></i></i> Phone</strong>
+
+            <p class="text-muted">@Model.phone</p>
+
+            <hr>
+
+
+            <strong><i class="fas fa-envelope-open margin-r-5"></i> Email</strong>
+
+            <p>@Model.email</p>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+</div>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="attendanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Userlog">
+    <Key>
+      <PropertyRef Name="logid" />
+    </Key>
+    <Property Name="logid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="logintime" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="logouttime" Type="DateTime" Precision="7" />
+    <Property Name="checkeddate" Type="DateTime" Precision="0" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Userlog__userid__5535A963" FromRole="Userlog" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="secondname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usertype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Userlogs" Relationship="Self.FK__Userlog__userid__5535A963" FromRole="Users" ToRole="Userlog" />
+  </EntityType>
+  <Association Name="FK__Userlog__userid__5535A963">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Userlog" Type="Self.Userlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Userlog">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbconn" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Userlogs" EntityType="Self.Userlog" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Userlog__userid__5535A963" Association="Self.FK__Userlog__userid__5535A963">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Userlog" EntitySet="Userlogs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

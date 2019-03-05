@@ -1,0 +1,65 @@
+﻿@using System.Web.Optimization
+@model AMS.Models.ViewModel.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    @Styles.Render("~/Bundles/login")
+    <title>Index</title>
+
+</head>
+<body>
+    <div>
+        <div class="container text-center headingtop">
+
+            <h1>Attendance Management System </h1>
+
+        </div>
+        <div class="container">
+
+            <div class="wrapper">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-signin">
+                        @Html.AntiForgeryToken()
+                        <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+                        <hr class="colorgraph"><br>
+                        <div>
+
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                        <div style="margin-top:10px;">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Password" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
+                        <br />
+                        <div class="alert-danger">
+                            @ViewBag.Message
+
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    @Scripts.Render("~/Bundles/js")
+</body>
+</html>
